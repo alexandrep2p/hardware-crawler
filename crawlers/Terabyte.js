@@ -6,7 +6,7 @@ const Product = require('../models/Product');
 let Products = [];
 
 let Terabyte = function(url) {
-    request('https://www.terabyteshop.com.br/hardware/memorias/ddr4', function(err, res, body) {
+    request(url, function(err, res, body) {
         let $ = cheerio.load(body);
         $('#prodarea div').each(function() {
             $(this).find('.commerce_columns_item_inner').each(function() {
