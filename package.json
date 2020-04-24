@@ -1,24 +1,25 @@
 {
-  "name": "hardware-crawler",
-  "version": "1.0.0",
-  "description": "Crawler para monitorar preços e analisar histórico de preço de componentes de PC",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alexandrep2p/hardware-crawler.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/alexandrep2p/hardware-crawler/issues"
-  },
-  "homepage": "https://github.com/alexandrep2p/hardware-crawler#readme",
-  "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
-    "moment": "^2.24.0",
-    "request": "^2.88.2"
-  }
+    "name": "hardware-crawler",
+    "version": "1.0.0",
+    "description": "Crawler para monitorar preços e analisar histórico de preço de componentes de PC",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/alexandrep2p/hardware-crawler.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/alexandrep2p/hardware-crawler/issues"
+    },
+    "homepage": "https://github.com/alexandrep2p/hardware-crawler#readme",
+    "dependencies": {
+        "cheerio": "^1.0.0-rc.3",
+        "mysql2": "^2.1.0",
+        "request": "^2.88.2",
+        "sequelize": "^5.21.7"
+    }
 }

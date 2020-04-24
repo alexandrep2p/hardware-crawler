@@ -1,11 +1,11 @@
 const request = require('request');
 const cheerio = require('cheerio');
-const moment = require('moment');
 const Product = require('../models/Product');
+const DaoProducts = require('../dao/Products');
 
 let Products = [];
 
-let Pichau = function(url) {
+let findAndSave = function(url) {
     request(url, function(err, res, body) {
         let $ = cheerio.load(body);
         $('.product-items li').each(function() {
@@ -19,14 +19,13 @@ let Pichau = function(url) {
                     let product = new Product(
                         name,
                         price,
-                        'Pichau',
-                        moment().format('DD/MM/YYYY'));
+                        'Pichau');
                     Products.push(product);
                 }
             });
         });
-        console.log(Products);
+        DaoProducts.newProducts(Products);
     });
 }
 
-module.exports = Pichau;
+module.exports = { findAndSave };
