@@ -1,13 +1,13 @@
 const connection = require('../connection');
 const Sequelize = require('sequelize');
 
-let newProducts = function(products) {
-    let product = connection.connect.define('products', {
-        name: Sequelize.STRING,
-        price: Sequelize.STRING,
-        seller: Sequelize.STRING,
-    });
+let product = connection.connect.define('products', {
+    name: Sequelize.STRING,
+    price: Sequelize.STRING,
+    seller: Sequelize.STRING,
+});
 
+let newProducts = function(products) {
     products.forEach(item => {
         connection.connect.sync().then(function() {
             product.create({
@@ -19,4 +19,4 @@ let newProducts = function(products) {
     });
 }
 
-module.exports = { newProducts };
+module.exports = { newProducts, product };
