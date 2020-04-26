@@ -6,7 +6,13 @@ const daoProducts = require('../dao/Products');
 app.use(express.urlencoded({ extended: false }));
 app.get('/products', (req, res) => {
     daoProducts.product
-        .findAll()
+        .aggregate('name', 'DISTINCT', { plain: false })
+        .then((result) => res.json(result));
+});
+
+app.get('/sellers', (req, res) => {
+    daoProducts.product
+        .aggregate('seller', 'DISTINCT', { plain: false })
         .then((result) => res.json(result));
 });
 
