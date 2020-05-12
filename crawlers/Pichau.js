@@ -18,7 +18,7 @@ let findAndSave = function(url) {
                     price = (price.substring((indexPrice + 1), (indexPriceComma + 3)));
                     let product = new Product(
                         name,
-                        price,
+                        price.replace(",", "."),
                         'Pichau');
                     Products.push(product);
                 }
