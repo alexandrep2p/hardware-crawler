@@ -1,5 +1,6 @@
 const express = require('express');
-const { Op } = require('sequelize');
+const { Op, QueryTypes } = require('sequelize');
+const sequelize = require('../connection');
 const app = express();
 const daoProducts = require('../dao/Products');
 
@@ -21,6 +22,14 @@ app.get('/sellers', (req, res) => {
         .then((result) => res.json(result));
 });
 
+app.get('/products/seller/:sellerName', (req, res) => {
+    const sellerName = req.params.sellerName;
+    sequelize.connect.query("SELECT DISTINCT name from products where seller = '" + sellerName + "'", { type: QueryTypes.SELECT })
+        .then(function(products) {
+            res.json(products);
+        });
+});
+
 app.get('/product/name/like/:productName', (req, res) => {
     const productName = req.params.productName;
     daoProducts.product
@@ -28,19 +37,6 @@ app.get('/product/name/like/:productName', (req, res) => {
             where: {
                 name: {
                     [Op.like]: '%' + productName + '%'
-                }
-            }
-        })
-        .then((result) => res.json(result));
-});
-
-app.get('/product/seller/:sellerName', (req, res) => {
-    const sellerName = req.params.sellerName;
-    daoProducts.product
-        .findAll({
-            where: {
-                seller: {
-                    [Op.like]: '%' + sellerName + '%'
                 }
             }
         })
