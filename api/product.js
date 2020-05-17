@@ -46,16 +46,10 @@ app.get('/product/name/like/:productName', (req, res) => {
 app.get('/product/productfromseller/:productName/:sellerName', (req, res) => {
     const productName = req.params.productName;
     const sellerName = req.params.sellerName;
-    daoProducts.product
-        .findAll({
-            where: {
-                seller: sellerName,
-                name: {
-                    [Op.like]: '%' + productName + '%'
-                }
-            }
-        })
-        .then((result) => res.json(result));
+	sequelize.connect.query("SELECT * FROM products p WHERE p.seller = '" + sellerName + "' AND p.name = '" + productName + "' ORDER BY p.createdAt ASC", {type:QueryTypes.SELECT})
+	.then(function(products){
+		res.json(products);
+	});
 });
 
 app.listen(3000);
