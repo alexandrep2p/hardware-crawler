@@ -3,6 +3,7 @@ const { Op, QueryTypes } = require('sequelize');
 const sequelize = require('../connection');
 const app = express();
 const daoProducts = require('../dao/Products');
+const config = require('../config');
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -46,12 +47,12 @@ app.get('/product/name/like/:productName', (req, res) => {
 app.get('/product/productfromseller/:productName/:sellerName', (req, res) => {
     const productName = req.params.productName;
     const sellerName = req.params.sellerName;
-	sequelize.connect.query("SELECT * FROM products p WHERE p.seller = '" + sellerName + "' AND p.name = '" + productName + "' ORDER BY p.createdAt ASC", {type:QueryTypes.SELECT})
-	.then(function(products){
-		res.json(products);
-	});
+    sequelize.connect.query("SELECT * FROM products p WHERE p.seller = '" + sellerName + "' AND p.name = '" + productName + "' ORDER BY p.createdAt ASC", { type: QueryTypes.SELECT })
+        .then(function(products) {
+            res.json(products);
+        });
 });
 
-app.listen(3000);
+app.listen(config.environment.API_LISTENER_PORT);
 
 module.exports = { app };

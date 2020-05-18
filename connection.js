@@ -1,15 +1,10 @@
 const Sequelize = require('sequelize');
+const config = require('./config');
 
-const DB_NAME = 'HWCRAWLER';
-const DB_USER = 'root';
-const DB_PASSWORD = 'dbpass10!';
-const DB_ADDRESS = 'localhost';
-const DB_PORT = '3306';
-
-const connect = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-    host: DB_ADDRESS,
+const connect = new Sequelize(config.config.environmentironment.DB_NAME, config.environment.DB_USER, config.environment.DB_PASSWORD, {
+    host: config.environment.DB_ADDRESS,
     dialect: 'mysql',
-    port: DB_PORT
+    port: config.environment.DB_PORT
 });
 
 module.exports = { connect };

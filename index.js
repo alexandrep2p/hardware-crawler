@@ -1,18 +1,17 @@
 const pichau = require('./crawlers/Pichau');
 const terabyte = require('./crawlers/Terabyte');
-const kabum = require('./crawlers/Kabum');
 const productApi = require('./api/product');
 const schedule = require('node-schedule');
+const config = require('./config');
 
-//Run product endpoint in 3000
+//Run API endpoints in port setted in config.js
 productApi.app;
 
-//Run crawlers every day at 08:30 AM
+//Run crawlers every day at time setted in config.js
 let rule = new schedule.RecurrenceRule();
-rule.hour = 8;
-rule.minute = 30;
+rule.hour = config.environment.CRAWLER_HOUR;
+rule.minute = config.environment.CRAWLER_MIN;
 schedule.scheduleJob(rule, function() {
     pichau.findAndSave('https://www.pichau.com.br/hardware/memorias?product_list_order=price&tipo_de_memoria=422');
     terabyte.findAndSave('https://www.terabyteshop.com.br/hardware/memorias/ddr4');
-    //kabum.findAndSave('https://www.kabum.com.br/hardware/memoria-ram/ddr-4?pagina=1&ordem=3&limite=30&filtro=["1544"]');
 });
