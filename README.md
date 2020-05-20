@@ -5,6 +5,7 @@ Atualmente as lojas em funcionamento são :
 
 - [Pichau](http://pichau.com.br)
 - [Terabyteshop](http://terabyteshop.com.br)
+- [Kabum!](http://kabum.com.br)
 
 ## Requisitos para execução
 
