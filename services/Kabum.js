@@ -1,6 +1,6 @@
 const request = require('request');
 const cheerio = require('cheerio');
-const Product = require('../models/Product');
+const Product = require('../models/product');
 const DaoProducts = require('../dao/Products');
 
 let Products = [];
