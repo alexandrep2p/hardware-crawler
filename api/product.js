@@ -53,6 +53,17 @@ app.get('/product/productfromseller/:productName/:sellerName', (req, res) => {
         });
 });
 
+app.get('/product/productfromseller/:productName/:sellerName/:startDate/:endDate', (req, res) => {
+    const productName = req.params.productName;
+    const sellerName = req.params.sellerName;
+    const startDate = req.params.startDate;
+    const endDate = req.params.endDate;
+    sequelize.connect.query("SELECT * FROM products p WHERE p.seller = '" + sellerName + "' AND p.name = '" + productName + "' AND p.createdAt BETWEEN '" + startDate + "' AND '" + endDate + "' ORDER BY p.createdAt ASC", { type: QueryTypes.SELECT })
+        .then(function(products){
+            res.json(products)
+        });
+});
+
 app.listen(config.environment.API_LISTENER_PORT);
 
 module.exports = { app };

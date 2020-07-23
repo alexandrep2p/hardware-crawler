@@ -31,3 +31,5 @@ Abra o terminal dentro do diretório raiz do projeto e execute o comando `node i
     - GET - Retorna os produtos onde o nome contenha a palavra contida em `:productName`. Ex.: /product/name/like/Corsair%20Vengeance
 - `/product/productfromseller/:productName/:sellerName`
     - GET - Retorna determinado produto de determinado vendedor, informando em `:productName` e `:sellerName` o nome do produto e vendedor. Ex.: /product/productfromseller/Memória%20DDR4%20Micron,%208GB%202666MHz/Terabyte
+- `/product/productfromseller/:productName/:sellerName/:startDate/:endDate`
+    - GET - Retorna determinado produto dentro de um intervalo de datas de determinado vendedor, informando em `:productName`, `:sellerName`, `:startDate` e `:endDate` o nome do produto, vendedor, data de início e data final. Ex.: /product/productfromseller/Memória%20DDR4%20Micron,%208GB%202666MHz/Terabyte/2020-05-01/2020-06-01
